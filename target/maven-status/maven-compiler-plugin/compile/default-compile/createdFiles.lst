@@ -1,0 +1,8 @@
+com\clientsapi\clients\ClientsApplication.class
+com\clientsapi\clients\service\ClienteServiceImpl.class
+com\clientsapi\clients\service\ClienteService.class
+com\clientsapi\clients\model\Cliente.class
+com\clientsapi\clients\model\Persona.class
+com\clientsapi\clients\repository\ClienteRepository.class
+com\clientsapi\clients\response\ClienteResponse.class
+com\clientsapi\clients\controller\ClienteController.class

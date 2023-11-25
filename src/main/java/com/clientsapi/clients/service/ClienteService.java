@@ -9,14 +9,15 @@ import java.util.List;
 public interface ClienteService {
     ResponseEntity<ClienteResponse> saveCliente(Cliente cliente);
 
-    Cliente getClienteById(Long Id);
+
+    Cliente getClienteById(Integer Id);
 
 
     List<Cliente> getAllClientes();
 
-    Cliente updateCliente(Long Id, Cliente clienteDetails);
+    Cliente updateCliente(Integer Id, Cliente clienteDetails);
 
-    void deleteCliente(Long Id);
+    void deleteCliente(Integer Id);
 
 
 }

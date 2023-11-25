@@ -25,22 +25,22 @@ public class ClienteController {
     }
 
     @GetMapping("/{Id}")
-    public Cliente getClienteById(@PathVariable Long Id) {
+    public Cliente getClienteById(@PathVariable Integer Id) {
         return clienteService.getClienteById(Id);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Cliente> getAllClientes() {
         return clienteService.getAllClientes();
     }
 
     @PutMapping("/{Id}")
-    public Cliente updateCliente(@PathVariable Long Id, @RequestBody Cliente clienteDetails) {
+    public Cliente updateCliente(@PathVariable Integer Id, @RequestBody Cliente clienteDetails) {
         return clienteService.updateCliente(Id, clienteDetails);
     }
 
     @DeleteMapping("/{Id}")
-    public ResponseEntity<?> deleteCliente(@PathVariable Long Id) {
+    public ResponseEntity<?> deleteCliente(@PathVariable Integer Id) {
         clienteService.deleteCliente(Id);
         return ResponseEntity.ok().build();
     }

@@ -16,33 +16,29 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
     @Override
     public ResponseEntity<ClienteResponse> saveCliente(Cliente cliente) {
 
         Cliente savedCliente = clienteRepository.save(cliente);
-
-
         String successMessage = "Cliente creado exitosamente";
-
-
         ClienteResponse response = new ClienteResponse(successMessage, savedCliente);
-
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @Override
-    public Cliente getClienteById(Long Id) {
+    public Cliente getClienteById(Integer Id) {
         return clienteRepository.findById(Id)
                 .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con ID: " + Id));
     }
+
 
     @Override
     public List<Cliente> getAllClientes() {
         return clienteRepository.findAll();
     }
     @Override
-    public Cliente updateCliente(Long Id, Cliente clienteDetails) {
+    public Cliente updateCliente(Integer Id, Cliente clienteDetails) {
         Cliente cliente = getClienteById(Id);
 
         cliente.setContraseña(clienteDetails.getContraseña());
@@ -54,12 +50,10 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setDireccion(cliente.getDireccion());
         cliente.setTelefono(cliente.getTelefono());
 
-        // Puedes realizar más validaciones u operaciones antes de guardar la actualización
-
         return clienteRepository.save(cliente);
     }
     @Override
-    public void deleteCliente(Long Id) {
+    public void deleteCliente(Integer Id) {
         Cliente cliente = getClienteById(Id);
         clienteRepository.delete(cliente);
     }

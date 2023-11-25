@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Persona  {
 
-
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "genero")
@@ -25,4 +24,5 @@ public class Persona  {
     private String direccion;
     @Column(name = "telefono")
     private String telefono;
+
 }

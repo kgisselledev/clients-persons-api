@@ -19,7 +19,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ClienteResponse> createCliente(@RequestBody Cliente cliente) {
         return clienteService.saveCliente(cliente);
     }
@@ -29,8 +29,9 @@ public class ClienteController {
         return clienteService.getClienteById(Id);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Cliente> getAllClientes() {
+
         return clienteService.getAllClientes();
     }
 

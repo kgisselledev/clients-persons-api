@@ -1,6 +1,7 @@
 package com.clientsapi.clients.service;
 
 import com.clientsapi.clients.model.Cliente;
+import com.clientsapi.clients.producer.producer;
 import com.clientsapi.clients.repository.ClienteRepository;
 import com.clientsapi.clients.response.ClienteResponse;
 import jakarta.persistence.EntityNotFoundException;
@@ -9,21 +10,38 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
+    private final producer producer;
 
+    @Autowired
+    public ClienteServiceImpl(ClienteRepository clienteRepository, producer rabbitMQProducer) {
+        this.clienteRepository = clienteRepository;
+        this.producer = rabbitMQProducer;
+    }
     @Override
     public ResponseEntity<ClienteResponse> saveCliente(Cliente cliente) {
 
         Cliente savedCliente = clienteRepository.save(cliente);
         String successMessage = "Cliente creado exitosamente";
         ClienteResponse response = new ClienteResponse(successMessage, savedCliente);
+
+
+        if (producer != null) {
+            producer.sendMessage("Nuevo cliente creado: " + cliente.getNombre());
+        } else {
+
+            System.err.println("El productor es null. No se puede enviar el mensaje.");
+        }
+
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
     }
 
     @Override

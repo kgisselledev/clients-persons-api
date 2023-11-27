@@ -2,7 +2,9 @@ package com.clientsapi.clients.response;
 
 import com.clientsapi.clients.model.Cliente;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ClienteResponse {
     private String message;
@@ -12,5 +14,4 @@ public class ClienteResponse {
         this.message = message;
         this.cliente = cliente;
     }
-
 }

@@ -1,0 +1,3 @@
+com\clientsapi\clients\ClientsApplicationTests.class
+com\clientsapi\clients\controller\ClienteIntegrationTest.class
+com\clientsapi\clients\controller\ClienteControllerTest.class
